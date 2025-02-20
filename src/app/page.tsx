@@ -1,20 +1,21 @@
-import Link from "next/link";
+import { Suspense } from 'react'
+import VoiceRecorder from '@/components/VoiceRecorder'
+import NotesList from '@/components/NotesList'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import LoadingNotes from '@/components/LoadingNotes'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-8">
-      <div>
-        <h2 className="text-2xl font-semibold text-center border p-4 font-mono rounded-md">
-          Starter Template
-        </h2>
+    <main className="min-h-screen flex flex-col">
+      <Header />
+      <div className="flex-1 container mx-auto px-4 py-8">
+        <VoiceRecorder />
+        <Suspense fallback={<LoadingNotes />}>
+          <NotesList />
+        </Suspense>
       </div>
-      <div>
-        <h1 className="text-6xl font-bold text-center">3, 2, 1... Go!</h1>
-        <h2 className="text-2xl text-center font-light text-gray-500 pt-4">
-          This page will be replaced with your app.
-        </h2>
-      </div>
-      
+      <Footer />
     </main>
-  );
+  )
 }
